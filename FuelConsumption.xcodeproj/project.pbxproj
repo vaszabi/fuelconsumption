@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		584AE8C7267A373800816E0E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584AE8C6267A373800816E0E /* Constants.swift */; };
 		58C240A12678EFDD00C4F498 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C240A02678EFDD00C4F498 /* AppDelegate.swift */; };
 		58C240A32678EFDD00C4F498 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C240A22678EFDD00C4F498 /* SceneDelegate.swift */; };
 		58C240A52678EFDD00C4F498 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C240A42678EFDD00C4F498 /* HomeViewController.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		584AE8C6267A373800816E0E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		58C2409D2678EFDD00C4F498 /* FuelConsumption.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FuelConsumption.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58C240A02678EFDD00C4F498 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		58C240A22678EFDD00C4F498 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 				58C240C52678FB8A00C4F498 /* View */,
 				58C240A92678EFDD00C4F498 /* Assets.xcassets */,
 				58C240AB2678EFDD00C4F498 /* LaunchScreen.storyboard */,
+				584AE8C6267A373800816E0E /* Constants.swift */,
 				58C240CA2678FED200C4F498 /* Router.swift */,
 				58C240AE2678EFDD00C4F498 /* Info.plist */,
 			);
@@ -158,6 +161,7 @@
 				58C240A52678EFDD00C4F498 /* HomeViewController.swift in Sources */,
 				58C240A12678EFDD00C4F498 /* AppDelegate.swift in Sources */,
 				58C240C12678FB5700C4F498 /* DetailedViewController.swift in Sources */,
+				584AE8C7267A373800816E0E /* Constants.swift in Sources */,
 				58C240CB2678FED200C4F498 /* Router.swift in Sources */,
 				58C240A32678EFDD00C4F498 /* SceneDelegate.swift in Sources */,
 			);
