@@ -9,6 +9,7 @@ import UIKit
 
 class SimpleViewController: UIViewController {
     
+    //MARK: Outlets
     @IBOutlet weak var traveledTextField: UITextField!
     @IBOutlet weak var refueledTextField: UITextField!
     @IBOutlet weak var calculateBtn: UIButton!
@@ -31,6 +32,7 @@ class SimpleViewController: UIViewController {
         showConsumption()
     }
     
+    //MARK: Private methods
     private func setupViews() {
         calculatedLabel.isHidden = true
         traveledTextField.delegate = self
@@ -45,7 +47,7 @@ class SimpleViewController: UIViewController {
               let litres = refueledTextField.text else {return}
         let consumption = ((litres as NSString).floatValue / (distance as NSString).floatValue) * 100
         let consumptionString = String(format: "%.2f", consumption)
-        calculatedLabel.text = "Your vehicle consumed \(consumptionString) litres."
+        calculatedLabel.text = "Your vehicle consumed \(consumptionString) litres / 100 km on average."
         calculatedLabel.isHidden = false
         
     }
@@ -58,11 +60,12 @@ class SimpleViewController: UIViewController {
     
 }
 
+//MARK: Textfield Delegates
 extension SimpleViewController: UITextFieldDelegate {
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        traveledTextField.resignFirstResponder()
+        refueledTextField.resignFirstResponder()
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
