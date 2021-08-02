@@ -78,7 +78,7 @@ class DetailedViewController: FCViewController {
         }
         guard let personsText = personsTextField.text,
               let persons = Int(personsText),
-              persons > 0 else {
+              persons > 0 && persons < 10 else {
             showInvalidPersonsNotification()
             return false
         }
@@ -86,7 +86,7 @@ class DetailedViewController: FCViewController {
     }
     
     private func showInvalidPersonsNotification() {
-        let alert = UIAlertController(title: "Invalid Persons", message: "Please input more than 1 person.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Invalid Persons", message: "Please input more than 1 person and less than 10.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.present(alert, animated: true)
     }
