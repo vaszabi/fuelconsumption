@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SimpleViewController: UIViewController {
+class SimpleViewController: FCViewController {
     
     //MARK: Outlets
     @IBOutlet weak var traveledTextField: UITextField!
@@ -15,7 +15,7 @@ class SimpleViewController: UIViewController {
     @IBOutlet weak var calculateBtn: UIButton!
     @IBOutlet weak var calculatedLabel: UILabel!
     
-    private var isTextfieldsEmpty: Bool {
+    private var isTextFieldsNotEmpty: Bool {
         return traveledTextField.hasText && refueledTextField.hasText
     }
     
@@ -25,7 +25,7 @@ class SimpleViewController: UIViewController {
     }
     
     @IBAction func calculateTapped(_ sender: Any) {
-        guard isTextfieldsEmpty else {
+        guard isTextFieldsNotEmpty else {
             showEmptyFieldNotification()
             return
         }
@@ -34,7 +34,7 @@ class SimpleViewController: UIViewController {
     
     //MARK: Private methods
     private func setupViews() {
-        calculatedLabel.isHidden = true
+        calculatedLabel.alpha = 0
         traveledTextField.delegate = self
         refueledTextField.delegate = self
         calculateBtn.layer.cornerRadius = Constants.buttonCornerRadius
@@ -48,16 +48,10 @@ class SimpleViewController: UIViewController {
         let consumption = ((litres as NSString).floatValue / (distance as NSString).floatValue) * 100
         let consumptionString = String(format: "%.2f", consumption)
         calculatedLabel.text = "Your vehicle consumed \(consumptionString) litres / 100 km on average."
-        calculatedLabel.isHidden = false
-        
+        UIView.animate(withDuration: 1.0) {
+            self.calculatedLabel.alpha = 1.0
+        }
     }
-    
-    private func showEmptyFieldNotification() {
-        let alert = UIAlertController(title: "Empty fields", message: "Please input data into all fields.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-        self.present(alert, animated: true)
-    }
-    
 }
 
 //MARK: Textfield Delegates
