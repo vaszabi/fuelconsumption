@@ -13,9 +13,6 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var detailedBtn: UIButton!
     @IBOutlet weak var simpleBtn: UIButton!
     
-    private let buttonCornerRadius: CGFloat = 15
-    private let buttonBorderWidth: CGFloat = 2
-    private let buttonBorderColor: CGColor = UIColor.systemOrange.cgColor
     private var router: Router?
     
 
@@ -38,12 +35,12 @@ class HomeViewController: UIViewController {
     
     //MARK: Private methods
     private func setupButtons() {
-        detailedBtn.layer.cornerRadius = buttonCornerRadius
-        detailedBtn.layer.borderWidth = buttonBorderWidth
-        detailedBtn.layer.borderColor = buttonBorderColor
-        simpleBtn.layer.cornerRadius = buttonCornerRadius
-        simpleBtn.layer.borderWidth = buttonBorderWidth
-        simpleBtn.layer.borderColor = buttonBorderColor
+        detailedBtn.layer.cornerRadius = Constants.buttonCornerRadius
+        detailedBtn.layer.borderWidth = Constants.buttonBorderWidth
+        detailedBtn.layer.borderColor = Constants.buttonBorderColor
+        simpleBtn.layer.cornerRadius = Constants.buttonCornerRadius
+        simpleBtn.layer.borderWidth = Constants.buttonBorderWidth
+        simpleBtn.layer.borderColor = Constants.buttonBorderColor
     }
 
 }
