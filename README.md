@@ -24,3 +24,5 @@ And of course Dillinger itself is open source with a [public repository][github]
 
     
    [github]: <https://github.com/vaszabi/fuelconsumption>
+
+Developed by Szabolcs Varga, 2021
