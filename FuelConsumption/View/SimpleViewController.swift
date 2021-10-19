@@ -12,7 +12,7 @@ class SimpleViewController: FCViewController {
     //MARK: Outlets
     @IBOutlet weak var traveledTextField: UITextField!
     @IBOutlet weak var refueledTextField: UITextField!
-    @IBOutlet weak var calculateBtn: UIButton!
+    @IBOutlet weak var calculateBtn: FCButton!
     @IBOutlet weak var calculatedLabel: UILabel!
     
     private var isTextFieldsNotEmpty: Bool {

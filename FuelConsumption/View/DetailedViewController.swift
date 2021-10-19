@@ -14,7 +14,7 @@ class DetailedViewController: FCViewController {
     @IBOutlet weak var fuelTextField: UITextField!
     @IBOutlet weak var priceTextField: UITextField!
     @IBOutlet weak var personsTextField: UITextField!
-    @IBOutlet weak var calculateBtn: UIButton!
+    @IBOutlet weak var calculateBtn: FCButton!
     @IBOutlet weak var resultLabel: UILabel!
     @IBOutlet weak var etcTextField: UITextField!
     @IBOutlet weak var etcLabel: UILabel!

@@ -7,11 +7,11 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: FCViewController {
     
     //MARK: Outlets
-    @IBOutlet weak var detailedBtn: UIButton!
-    @IBOutlet weak var simpleBtn: UIButton!
+    @IBOutlet weak var detailedBtn: FCButton!
+    @IBOutlet weak var simpleBtn: FCButton!
     
     private var router: Router?
     
