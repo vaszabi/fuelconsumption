@@ -78,10 +78,10 @@
 				58C240A22678EFDD00C4F498 /* SceneDelegate.swift */,
 				58C240C52678FB8A00C4F498 /* View */,
 				58E2613B267B3824008389BB /* Presenter */,
+				58C240CA2678FED200C4F498 /* Router.swift */,
+				584AE8C6267A373800816E0E /* Constants.swift */,
 				58C240A92678EFDD00C4F498 /* Assets.xcassets */,
 				58C240AB2678EFDD00C4F498 /* LaunchScreen.storyboard */,
-				584AE8C6267A373800816E0E /* Constants.swift */,
-				58C240CA2678FED200C4F498 /* Router.swift */,
 				58C240AE2678EFDD00C4F498 /* Info.plist */,
 			);
 			path = FuelConsumption;

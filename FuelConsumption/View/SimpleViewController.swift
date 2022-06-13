@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol SimpleViewDelegate {
+    func showResult(with consumption: String)
+}
+
 class SimpleViewController: FCViewController {
     
     //MARK: Outlets
@@ -15,13 +19,16 @@ class SimpleViewController: FCViewController {
     @IBOutlet weak var calculateBtn: FCButton!
     @IBOutlet weak var calculatedLabel: UILabel!
     
-    private var isTextFieldsNotEmpty: Bool {
+    let presenter = SimplePresenter()
+    
+    var isTextFieldsNotEmpty: Bool {
         return traveledTextField.hasText && refueledTextField.hasText
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        presenter.delegate = self
     }
     
     @IBAction func calculateTapped(_ sender: Any) {
@@ -29,7 +36,7 @@ class SimpleViewController: FCViewController {
             showEmptyFieldNotification()
             return
         }
-        showConsumption()
+        presenter.calculateTapped()
     }
     
     //MARK: Private methods
@@ -42,16 +49,6 @@ class SimpleViewController: FCViewController {
         calculateBtn.layer.borderColor = Constants.buttonBorderColor
     }
     
-    private func showConsumption() {
-        guard let distance = traveledTextField.text,
-              let litres = refueledTextField.text else {return}
-        let consumption = ((litres as NSString).floatValue / (distance as NSString).floatValue) * 100
-        let consumptionString = String(format: "%.2f", consumption)
-        calculatedLabel.text = "Your vehicle consumed \(consumptionString) litres / 100 km on average."
-        UIView.animate(withDuration: 1.0) {
-            self.calculatedLabel.alpha = 1.0
-        }
-    }
 }
 
 //MARK: Textfield Delegates
@@ -74,6 +71,18 @@ extension SimpleViewController: UITextFieldDelegate {
         let substringToReplace = textFieldText[rangeOfTextToReplace]
         let count = textFieldText.count - substringToReplace.count + string.count
         return count <= maxCount
+    }
+    
+}
+
+//MARK: SimpleViewDelegate conform
+extension SimpleViewController: SimpleViewDelegate {
+    
+    func showResult(with consumption: String) {
+        calculatedLabel.text = "Your vehicle consumed \(consumption) litres / 100 km on average."
+        UIView.animate(withDuration: 1.0) {
+            self.calculatedLabel.alpha = 1.0
+        }
     }
     
 }

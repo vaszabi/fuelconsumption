@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol DetailedViewDelegate {
+    func showResult(with result:(total:Double, single:Int))
+}
+
 class DetailedViewController: FCViewController {
     
     //MARK: Outlets
@@ -19,6 +23,8 @@ class DetailedViewController: FCViewController {
     @IBOutlet weak var etcTextField: UITextField!
     @IBOutlet weak var etcLabel: UILabel!
     
+    let presenter = DetailedPresenter()
+    
     private var isTextFieldsNotEmpty: Bool {
         return distanceTextField.hasText && fuelTextField.hasText &&
             priceTextField.hasText && personsTextField.hasText && etcTextField.hasText
@@ -27,13 +33,15 @@ class DetailedViewController: FCViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        presenter.delegate = self
     }
     
     @IBAction func calculateTapped(_ sender: Any) {
+        resultLabel.alpha = 0
         guard isInputCorrect() else {
             return
         }
-        handleCorrectInputs()
+        presenter.calculateTapped()
     }
     
     //MARK: Private methods
@@ -43,32 +51,6 @@ class DetailedViewController: FCViewController {
         calculateBtn.layer.borderWidth = Constants.calculateBorderWidth
         calculateBtn.layer.borderColor = Constants.buttonBorderColor
         resultLabel.alpha = 0
-    }
-    
-    private func handleCorrectInputs() {
-        guard let distanceText = distanceTextField.text,
-              let distance = Double(distanceText),
-              let fuelText = fuelTextField.text,
-              let fuelCons = Double(fuelText),
-              let fuelPriceText = priceTextField.text,
-              let fuelPrice = Double(fuelPriceText),
-              let personsText = personsTextField.text,
-              let persons = Int(personsText),
-              let etcText = etcTextField.text,
-              let etcPrice = Double(etcText) else { return }
-        
-        let totalPrice = ((distance/100) * fuelCons * fuelPrice) + etcPrice
-        let singlePrice = Int(totalPrice) / persons
-        showResult(with: (totalPrice, singlePrice))
-    }
-    
-    private func showResult(with result:(total:Double, single:Int) ) {
-        
-        resultLabel.text = "Your trip's total cost is: \(Int(result.total)) HUF. \n\(result.single) HUF per persons."
-        resultLabel.isHidden = false
-        UIView.animate(withDuration: 1) {
-            self.resultLabel.alpha = 1.0
-        }
     }
     
     private func isInputCorrect() -> Bool {
@@ -118,6 +100,22 @@ extension DetailedViewController: UITextFieldDelegate {
         let substringToReplace = textFieldText[rangeOfTextToReplace]
         let count = textFieldText.count - substringToReplace.count + string.count
         return count <= maxCount
+    }
+    
+}
+
+//MARK: DetailedViewDelegate conform
+extension DetailedViewController: DetailedViewDelegate {
+    
+    func showResult(with result: (total: Double, single: Int)) {
+        guard let personsText = personsTextField.text,
+              let persons = Int(personsText) else { return }
+        let resultText = (persons > 1) ? "Your trip's total cost is: \(Int(result.total)) HUF. \n\(result.single) HUF per persons." : "Your trip's total cost is: \(Int(result.total)) HUF."
+        resultLabel.text = resultText
+        resultLabel.isHidden = false
+        UIView.animate(withDuration: 1) {
+            self.resultLabel.alpha = 1.0
+        }
     }
     
 }
